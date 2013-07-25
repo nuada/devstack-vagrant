@@ -27,5 +27,10 @@ cd devstack
 ./stack.sh
 
 #Copy back all PIP cache data to the shared folder, for subsequent use
+[[ ! -d /vagrant/pip_cache ]] && mkdir /vagrant/pip_cache
 cp /var/cache/pip/* /vagrant/pip_cache
+[[ ! -d /vagrant/apt_cache ]] && mkdir /vagrant/apt_cache
 cp -R /var/cache/apt/* /vagrant/apt_cache/ || true
+
+# Gateway
+ip route add default via 172.16.0.254
